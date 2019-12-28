@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+# coding=utf-8
+
+import sys
+import os
+sys.path.append(os.path.abspath('./Chapter04'))
+# # add the work path to sys path, this will cause the other module import from the work path instead of the same folder
+# sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from stack import Stack
 
 def iter_sum(num_list):
     num_sum = 0
@@ -63,10 +72,23 @@ def check_palindrome(test_string):
             # The recursive steps will be stop when some conditions meet
             return False
 
+
+def stack_base_string(num, base):
+    s = Stack()
+    convert_string = '01234567890ABCDEF'
+    while num > 0:
+        s.push( convert_string[num % base] )
+        num = num // base
+    result = ''
+    while not s.is_empty():
+        result += s.pop()
+    return result
+
 print(iter_sum([1,3,5,7,9]))
 print(recur_sum([1,3,5,7,9]))
 print(factorial_num(5))
 print(repr(base_string(34564,16)))
+print(repr(stack_base_string(34564,10)))
 print(repr(revers_string('eegeh')))
 print(check_palindrome('Go hang a salami; I’m a lasagna hog.'))
 print(check_palindrome('Go han a salami; I’m a lasagna hog.'))

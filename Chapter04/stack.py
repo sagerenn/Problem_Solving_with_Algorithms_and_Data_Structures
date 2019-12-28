@@ -33,6 +33,7 @@ class Stack():
         """return the stack"""
         return str(self.stack)
 
+    __str__ = __repr__
 
 class LinkedStack():
     def __init__(self):
