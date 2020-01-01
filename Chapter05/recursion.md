@@ -31,4 +31,4 @@ Maybe we need to find out all result to compare which one is the least. In the p
 
 1. recursion(top down)
 2. caching or memoization, reduce the repeated work, which smaller one is not needed will not be cached. (holes in the list)
-3. dynamic programming, solve systematically the current state by the all previous state. We start to solve the basic one, and get larger until the the current value(buttom up). The min current will be calculated by loop over the previous state within some fix rule or value, save the min and the corresponding value to keep track the size and item of conbination.
+3. dynamic programming, solve systematically the current state by the all previous state. We start to solve the basic one, and get larger until the the current value(buttom up). The min current will be calculated by loop over the previous state within some fix rule or value, save the min and the corresponding value to keep track the size and item of conbination. Maybe the subproblems has the overlap property can be memoized will be possible to use dynamic programming.(2d,3d...)
