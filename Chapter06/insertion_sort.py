@@ -64,11 +64,13 @@ def insert_sort_3(num_list):
         i -= 1
     return num_list
 
-test_list = [34,5,6,56,7,34,5,4]
-print(insert_sort(test_list))
-test_list = [34,5,6,56,7,34,5,4]
+if __name__ == "__main__":
 
-print(insert_sort_2(test_list))
-# test_list = [34,5,6,56,7,34,5,4]
+    test_list = [34,5,6,56,7,34,5,4]
+    print(insert_sort(test_list))
+    test_list = [34,5,6,56,7,34,5,4]
 
-print(insert_sort_3(test_list))
+    print(insert_sort_2(test_list))
+    # test_list = [34,5,6,56,7,34,5,4]
+
+    print(insert_sort_3(test_list))

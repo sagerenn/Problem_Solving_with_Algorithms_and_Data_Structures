@@ -25,21 +25,23 @@ def insert_sort(num_list, start, gap):
         # move forward to the remaining item on the right side
         position += gap
 
-def shell_sort(num_list):
+def shell_sort(num_list, gap):
     # for larger list, the gap may be reduced by divide 2, to make the item closer to the final location.(4>2>1)
-    gap = 3
+    # gap = 3
 
-    # for each sublist
-    for i in range(gap):
-        # do the insertion sort
-        insert_sort(num_list, i, gap)
+    while gap > 0:
+        # for each sublist
+        for i in range(gap):
+            # do the insertion sort
+            insert_sort(num_list, i, gap)
+        gap = gap // 2
         
     # finally, move the remain unordered item
-    insert_sort(num_list, 0, 1)
+    # insert_sort(num_list, 0, 1)
     
     return num_list
 
-
-test_list = [54,26,93,17,77,31,44,55,20]
-print(shell_sort(test_list))
+if __name__ == "__main__":
+    test_list = [54,26,93,17,77,31,44,55,20]
+    print(shell_sort(test_list, 4))
 

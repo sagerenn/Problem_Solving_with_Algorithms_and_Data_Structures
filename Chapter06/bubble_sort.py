@@ -43,20 +43,51 @@ def shot_bubble(num_list):
         pass_num -= 1
     return num_list, count
 
-test_list = [34,5,6,56,7,34,5,4]
-print(right_large_bubble(test_list))
-test_list = [34,5,6,56,7,34,5,4]
-print(left_large_bubble(test_list))
+def bidirect_bubble(num_list):
+    direct = 'right'
+    exchange = True
+    start = 0
+    end = len(num_list) - 1
+    temp = 0
+    while end > start and exchange:
+        exchange = False
+        if direct == 'right':
+            while temp < end:
+                if num_list[temp+1] < num_list[temp]:
+                    num_list[temp+1], num_list[temp] = num_list[temp], num_list[temp+1]
+                    exchange = True
+                temp += 1
+            direct = 'left'
+            end -= 1
+        else:
+            while temp > start:
+                if num_list[temp-1] > num_list[temp]:
+                    num_list[temp-1], num_list[temp] = num_list[temp], num_list[temp-1]
+                    exchange = True
+                temp -= 1
+            direct = 'right'
+            start += 1
 
-test_list = [34,5,6,56,7,34,5,4]
-print(shot_bubble(test_list))
+    return num_list
 
-print()
-print()
-print()
-test_list = [20,30,40,90,50,60,70,80,100,110]
-print(right_large_bubble(test_list))
-test_list = [20,30,40,90,50,60,70,80,100,110]
-print(left_large_bubble(test_list))
-test_list = [20,30,40,90,50,60,70,80,100,110]
-print(shot_bubble(test_list))
+if __name__ == "__main__":
+    test_list = [34,5,6,56,7,34,5,4]
+    print(right_large_bubble(test_list))
+    test_list = [34,5,6,56,7,34,5,4]
+    print(left_large_bubble(test_list))
+
+    test_list = [34,5,6,56,7,34,5,4]
+    print(shot_bubble(test_list))
+    test_list = [34,5,6,56,7,34,5,4]
+    print(bidirect_bubble(test_list))
+    print()
+    print()
+    print()
+    test_list = [20,30,40,90,50,60,70,80,100,110]
+    print(right_large_bubble(test_list))
+    test_list = [20,30,40,90,50,60,70,80,100,110]
+    print(left_large_bubble(test_list))
+    test_list = [20,30,40,90,50,60,70,80,100,110]
+    print(shot_bubble(test_list))
+    test_list = [20,30,40,90,50,60,70,80,100,110]
+    print(bidirect_bubble(test_list))

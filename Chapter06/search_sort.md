@@ -32,9 +32,10 @@ b. minimize the number of collisions. like nature, add more factor or convertion
 
 (1) folding method: divide the collection to equal-size pieces and add together. go further, some folding method reverse every other piece before the addition. 34566 --> ( 34 + 56 + 6 ) % 11 = 8
 (2) mid-square method: to get the value of square the item, and extract some portion of the resulting digits. 55^2 = 3025 --> 02 / 11 = 2
-(3) string can convert to ordinal(ascii) number char by char and add together. to remedy the anagram situation, we can use the position of the character as a weight.
+(3) string can convert to ordinal(ascii) number char by char and add together. to remedy the anagram situation, we can use the position of the character as a weight. (Because a string only has the char and position properties, we can design the different weighting scheme based on the position.)
 
 The hash function must be efficient, the time complexity require to O(1) for following the purpose of hashing.
+
 
 ### collision resolution
 1. linear probing to find the open addressing, start at the origin hash value that occur the collision, and move circularly to the next slot until find the empty slot or return to the origin position. Maybe we can skip the item with (1, 3, ...) steps. We must be sure the skip to cover all the slots in the list to find the possible opening slot. To fulfill the requirement, the table size must be the prime number. (table_size % skip_steps != 0)
@@ -45,11 +46,12 @@ Maybe you can change the skip steps to disperse the group. It can be refer as th
 
 while searching, we check the item of origin slot. If it match, return True, or do a sequential search starting at the origin one to find the item until another open slot or back to the origin slot. So if the more item is not located in the correct slot, the search will be not efficient.
 
-2. quadratic probing, instead of skip constant value, we can skip the value by the square of 1, 3, 5, 7... or 
-origin_slot += 1^2, (2^2, 3^2, ..., i^2) 
+2. quadratic probing, instead of skip constant value, we can skip the value by the successive square of 1, 2, 3, 4... or 
+origin_slot += 1^2, (2^2, 3^2, ..., i^2), how to make sure the quadratic probing will pass through all the slot?(prime number of table size?)
 
 3. chaining, each slot handle a reference to a collection of items, and allow many item witch the same hash value to the same position. when searching, we found the origin slot, and we need to search again(sequential, binary, hash) to find the final result. on average, the fewer items will locate in the same slot. So the method may be efficient.
 
+The size of hash table is `50% full` is better to gain the performance and spend less space.
 
 the time complexity of hash is related to the load factor (λ, 6/11). the λ is small means there are fewer collision. Otherwise, the collision will happen frequently. if the collision resolution is more difficult, requiring the more comparison to find the slot.
 method avg successful unsuccessful
@@ -59,6 +61,8 @@ chaining 1+λ/2 λ ??
 ## Map
 An collection data type stores the key-value pairs. The key is used to loop up the associated value. e.g. the number of book in the library
 we can use the hash table for the key list, and compute the slot of the key, to find the associated value with the same position in the other list. (hash value --> key --> value)
+
+It's so difficult to restore the origin ordered list with the collision solution since lots of value skip its slot. So the dictionary is unordered list in python. And while extending the table size, we just need read the values one by one in the small table size and rehash to the new larger table.
 
 # Sorting
 
@@ -102,6 +106,8 @@ worst: n^2, each pass will shift all the ordered sublist
 best = 0, ordered list
 
 The shifting process will require a third of the processing work of an exchange since only one assignment is performed.
+
+It's suitable for nearly ordered list with best time complexity or the small list with low overhead. And the insertion sort is stable.
 
 ## Shell sort
 As we can see the performance of insertion sort is good in the ordered list, so if we can preset the ability of order of list and finally use insertion sort once again, we can improve the time complexity from O(n^2) --> O(n). 

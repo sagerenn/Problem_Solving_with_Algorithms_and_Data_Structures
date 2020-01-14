@@ -1,8 +1,11 @@
+import random
+from insertion_sort import insert_sort_2
 
 def quick_sort(num_list, start, end):
 
     # when the length of list is greater than one
     if end - start > 0:
+
         # use the start item as the pivot
         pivot = start
 
@@ -40,7 +43,9 @@ def quick_sort(num_list, start, end):
 
 
 def qsort(num_list, start, end):
+
     if end > start:
+
         median_three = [start, end, (start + end)//2]
         min_value = min([ num_list[start], num_list[end], num_list[(start + end)//2] ])
         max_value = max([ num_list[start], num_list[end], num_list[(start + end)//2] ])
@@ -58,7 +63,7 @@ def qsort(num_list, start, end):
             # unstable
             while num_list[left_mark] <= num_list[pivot] and right_mark >= left_mark:
                 left_mark += 1
-
+                
             while num_list[right_mark] >= num_list[pivot] and right_mark >= left_mark:
                 right_mark -= 1
 
@@ -74,10 +79,27 @@ def qsort(num_list, start, end):
         qsort(num_list, start, split_point-1)
         qsort(num_list, split_point+1, end)
 
-test_list = [54,26,93,17,77,31,44,55,20]
-quick_sort(test_list, 0, len(test_list) - 1)
-print(test_list)
 
-test_list = [54,26,93,17,77,31,44,55,20]
-qsort(test_list, 0, len(test_list) - 1)
-print(test_list)
+def qsort_insert(num_list, part_limit):
+    if part_limit >= len(num_list):
+        insert_sort_2(num_list)
+    else:
+        qsort(num_list, 0, len(num_list)-1)
+
+
+if __name__ == "__main__":
+    count = 0
+    test_list = [random.randint(1, 1000000) for i in range(2000)]
+    quick_sort(test_list, 0, len(test_list) - 1)
+    print(test_list, count)
+
+    count = 0
+    # test_list = [54,26,93,17,77,31,44,55,20]
+    test_list = [random.randint(1, 1000000) for i in range(2000)]
+    qsort(test_list, 0, len(test_list) - 1)
+    print(test_list, count)
+
+    # test_list = ['P','Y','T','H','O','N']
+    # qsort(test_list, 0, len(test_list) - 1)
+    # print(test_list)
+

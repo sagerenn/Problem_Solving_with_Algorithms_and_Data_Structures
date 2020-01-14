@@ -41,6 +41,17 @@ def merge_sort(num_list):
     print("Merge" , num_list)
 
 
+# def merge_sort_2(num_list, start, end):
+#     if end > start:
+#         mid = (start + end) // 2
+#         left = [ num_list[i] for i in range(start, mid+1) ]
+#         right = [ num_list[i] for i in range(mid+1, end+1) ]
+#         merge_sort_2( left, 0, len(left)-1 )
+#         merge_sort_2( right, 0, len(right)-1 )
+
+        
+
+
 test_list = [34,5,6,56,7,34,4]
 merge_sort(test_list)
 print(test_list)

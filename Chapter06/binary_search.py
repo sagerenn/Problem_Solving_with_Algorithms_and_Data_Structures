@@ -4,11 +4,12 @@
 # not in O(N) O(N) O(N)
 def iter_bin_search(num_list, goal):
     count = 0
-    middle = len(num_list) // 2
 
-    # the question is find the item in the list, we need to find the item in the subset of list, so it's neseccery to remenber the start and the end to arrange the list.
+    # the question is find the item in the list, we need to find the item in the subset of list, so it's neseccery to remember the start and the end to arrange the list.
     start = 0
-    end = len(num_list)
+    end = len(num_list) - 1
+    middle = (start + end) // 2
+
     while num_list[middle] != goal:
         count += 1
         if start >= end:
@@ -21,7 +22,7 @@ def iter_bin_search(num_list, goal):
 
     return middle, count
 
-
+# the recursive call will cost two times than the iteration call, as it need to create sub-function and return the value
 def rec_bin_search(num_list, goal, start, end, count):
     count += 1
     middle = (start + end) // 2

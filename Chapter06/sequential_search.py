@@ -28,8 +28,8 @@ def order_sequential_search(item_list, goal):
     return False, count
 
 
-print( sequential_search([45,6,23,56,5], 23)  )
-print( sequential_search([45,6,23,56,5], 2)  )
-print( order_sequential_search([1,3,4,5,6,23,55,67], 34)  )
-print( order_sequential_search([1,3,4,5,6,23,55,67], 23)  )
+# print( sequential_search([45,6,23,56,5], 23)  )
+# print( sequential_search([45,6,23,56,5], 2)  )
+# print( order_sequential_search([1,3,4,5,6,23,55,67], 34)  )
+# print( order_sequential_search([1,3,4,5,6,23,55,67], 23)  )
 

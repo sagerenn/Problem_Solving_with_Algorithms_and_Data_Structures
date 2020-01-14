@@ -1,4 +1,11 @@
 
+def rehash_func(num_list, key):
+    # temp = key
+    while num_list[key % len(num_list)] != None:
+        key += 1
+        if key == len(num_list):
+            key = 0
+    return key % len(num_list)
 
 def hashing(num_list):
     hash_table = [None for i in range(10)]
@@ -37,10 +44,12 @@ def hash_func_string(test_str, table_size):
         result += ord( test_str[i] ) * (i+1)
     return result % table_size
 
-test_list = [34,5,7,8,23,679]
-hash_list = hashing(test_list)
-print( hash_search( hash_list, 235 ) )
+if __name__ == "__main__":
+    test_list = [34,5,7,8,23,679]
+    hash_list = hashing(test_list)
+    print( hash_search( hash_list, 235 ) )
 
-print( hash_func_folding(3465674, 11) )
-print( hash_func_square(66, 11) )
-print( hash_func_string('cat', 11) )
+    print( hash_func_folding(3465674, 11) )
+    print( hash_func_square(66, 11) )
+    print( hash_func_string('cat', 11) )
+
