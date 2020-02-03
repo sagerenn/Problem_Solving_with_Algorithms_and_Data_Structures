@@ -8,20 +8,25 @@ class BinHeap():
         self.heap = [0]
         self.size = 0
 
+    def percolate_up(self, i):
+        while i // 2 > 0 and self.heap[i//2][0] > self.heap[i][0]:
+            self.heap[i], self.heap[i//2] = self.heap[i//2], self.heap[i]
+            i = i//2
+
     def insert(self, item):
         self.heap.append(item)
         self.size += 1
         temp = self.size
 
         # compare with parent node, exchange when the parent is larger
-        while temp // 2 > 0 and self.heap[temp//2] > self.heap[temp]:
+        while temp // 2 > 0 and self.heap[temp//2][0] > self.heap[temp][0]:
             self.heap[temp], self.heap[temp//2] = self.heap[temp//2], self.heap[temp]
             temp = temp//2
 
     def min_index(self, i, j):
-        if self.heap[i] <= self.heap[j]:
+        if self.heap[i][0] <= self.heap[j][0]:
             return i
-        elif self.heap[j] <= self.heap[i]:
+        elif self.heap[j][0] <= self.heap[i][0]:
             return j
 
     def get_left(self, i):
@@ -45,7 +50,7 @@ class BinHeap():
         elif 2*i + 1 > self.size:
             return 2*i
         else:
-            if self.heap[2*i] > self.heap[2*i + 1]:
+            if self.heap[2*i][0] > self.heap[2*i + 1][0]:
                 return 2*i + 1
             else:
                 return 2*i
@@ -53,7 +58,7 @@ class BinHeap():
     def percolate_down(self, i):
         while i*2 <= self.size:
             t = self.min_child(i)
-            if self.heap[i] > self.heap[t]:
+            if self.heap[i][0] > self.heap[t][0]:
                 self.heap[i], self.heap[t] = self.heap[t], self.heap[i]
             else:
                 break
@@ -94,6 +99,20 @@ class BinHeap():
                     break
 
         return temp
+
+    def decrease_element(self, old, new):
+        for i in range(1, self.size+1):
+            if self.heap[i] == old:
+                self.heap[i] = new
+                self.percolate_up(i)
+                break
+
+    def __contains__(self, item):
+        for i in self.heap:
+            if i == item:
+                return True
+
+        return False
 
 class BinMaxHeap():
 

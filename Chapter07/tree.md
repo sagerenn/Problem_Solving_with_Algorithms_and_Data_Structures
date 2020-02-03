@@ -195,3 +195,5 @@ We can do a rotation for the child of the root to make sure each node is heavy o
 
 The deletion of nodes will update the balance factor from the successor or leaf to the root(missing a level), while
 1. the parent's balance factor to zero until the root
+
+Threaded binary seach tree is the tree can traverse from the least node to the largest node, or from the largest node to the least node. The final part will point to Null.
